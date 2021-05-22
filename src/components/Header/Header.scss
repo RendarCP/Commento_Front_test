@@ -1,0 +1,16 @@
+@import '../../css/Responsive.scss';
+
+
+@include mobile {
+  .Header {
+    padding: 11px 15px;
+    box-shadow: 0px 1px 5px #00000012;
+  }
+}
+
+@include desktop {
+  .Header {
+    padding: 23px 390px;
+    box-shadow: 0px 1px 5px #00000012;
+  }
+}

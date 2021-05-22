@@ -1,0 +1,96 @@
+@import '../../css/Responsive.scss';
+
+@include mobile { 
+  .CardDate {
+    display: none;
+  }
+  .UserSpacer {
+    display: none;
+  }
+  .CardAd {
+    margin-top: 17px;
+  }
+}
+
+@include desktop {
+  .CardDate {
+    font-size: 13px; 
+    color: #7E848A;
+  }
+  .UserSpacer {
+    margin: 0 10px; 
+    border-right: 1px solid #7E848A;
+  }
+  .CardAd {
+    display: flex;
+    margin-top: 17px;
+  }
+}
+.CardContainer {
+  border: 1px solid #E1E4E7;
+  border-radius: 10px;
+  padding: 30px 20px;
+  overflow: hidden;
+}
+
+.CardHeader {
+  display:flex;
+  justify-content:space-between; 
+  color: #7E848A;
+  font-size: 13px;
+}
+
+.CardSpacer {
+  margin: 10px 0;
+  border-bottom: 1px solid #7E848A;
+}
+
+.CartTitle {
+  color: #282C30;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.CardContent {
+  margin-top: 6px;
+  font-size: 16px;
+  color: #495057;
+  width: 100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.CardUserId {
+  font-size: 13px;
+  color: #00C854;
+}
+
+.CardSponsored {
+  font-size: 13px;
+  color: #ADB5BD;
+}
+
+.UserSpacer {
+  margin: 0 10px; 
+  border-right: 1px solid #7E848A;
+}
+
+.AdContent {
+  width: 465px;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+  margin-top: 6px;
+  font-size: 16px;
+  color: #495057;
+  text-overflow: ellipsis;
+}
+

@@ -1,0 +1,18 @@
+@import '../css/Responsive.scss';
+
+@include desktop {
+  .PlainLayout{
+    padding: 50px 390px;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+@include mobile {
+  .PlainLayout{
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+}

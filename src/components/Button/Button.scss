@@ -1,0 +1,25 @@
+$green: #00C854; // 주석 선언
+
+.Button {
+  //@at-root: inline-flex;
+  color: #ffffff;
+  font-weight: bold;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  padding: 14px 87px;
+  font-size: 22px;
+  
+  background: $green; 
+  &:hover {
+    background: lighten($green, 5%); 
+  }
+
+  &:active {
+    background: darken($green, 5%); 
+  }
+  &.normal {
+    font-weight: normal;
+  }
+}
