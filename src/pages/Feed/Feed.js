@@ -2,24 +2,27 @@ import React, { useEffect, useState } from 'react'
 import './Feed.scss'
 import '../../css/Global.scss'
 import axios from 'axios'
+import useList from '../../hooks/useList'
+import { Link } from 'react-router-dom'
 
 import PlaneLayout from '../../layout/PlainLayout'
-
+// 컴포넌트
 import Button from '../../components/Button/Button'
 import Card from '../../components/Card/Card'
 import Modal from '../../components/Modal/Modal'
 
 function Feed(){
-  const [ rdoStatus, setRdoStatus] = useState('') // 라디오 박스 상태
+  const [ rdoStatus, setRdoStatus] = useState('오름차순') // 라디오 박스 상태
   const [ filterStatus, setFilterStatus ] = useState(false) // 필터 모달
   const [ filterLists, setFilterLists ] = useState([]) // 필터 정보 array
-  const [ checkItems, setCheckItems ] = useState([]) // 체크박스 확인용
-  const [ lists, setLists ] = useState([])
+  const [ checkItems, setCheckItems ] = useState([1,2,3]) // 체크박스 확인용
+  const [ lists, setLists ] = useState([]) // 리스트 상태 
+  const [ adLists, setAdLists ] = useState([]) // ad리스트
 
   useEffect(() => {
     axios.get('https://problem.comento.kr/api/category')
     .then( res => {
-      console.log(res)
+      console.log('category',res)
       setFilterLists(res.data.category)
     }).catch(err => {
       console.log(err)
@@ -31,8 +34,8 @@ function Feed(){
       params: {
         page: 1,
         ord: "asc",
-        category: [1],
-        limit: 10
+        category: [1,2,3],
+        limit: 33
       }
     }).then(res => {
       console.log("list" ,res)
@@ -42,13 +45,37 @@ function Feed(){
     })
   },[])
 
-  const test = (id) => {
+  useEffect(() => {
+    axios.get('https://problem.comento.kr/api/ads?page=1&limit=10',)
+    .then(res => {
+      console.log('ads', res)
+      setAdLists(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  },[])
+
+
+  const onCardCategory = (id) => {
     const category = filterLists.filter((el) => el.id === 1)
     return category
   }
 
   const onChangeRadioButton = ( value ) => {
     setRdoStatus(value)
+    axios.get('https://problem.comento.kr/api/list',{
+      params: {
+        page: 1,
+        ord: value,
+        category: [1,2,3],
+        limit: 33
+      }
+    }).then(res => {
+      console.log("list" ,res)
+      setLists(res.data.data)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
   const onClickCheck = (check, id) => {
@@ -63,8 +90,10 @@ function Feed(){
   const onClickFilter = () => {
     setFilterStatus(!filterStatus)
   }
+  
+  //console.log(useList(1,"ord",[1]))
   return(
-    console.log(lists),
+    console.log(adLists),
     <div className="Feed">
       <PlaneLayout>
         <div className="btnMargin">
@@ -105,19 +134,37 @@ function Feed(){
           {/* 콘텐츠 부분 */}
           <div className="FeedContent">
             {
-              lists.map(list => {
-                return(
-                  <>
-                    <Card 
-                      categoryId={test(list.category_id)} 
-                      contents={list.contents} 
-                      create={list.created_at} 
-                      title={list.title} 
-                      userId={list.user_id}
-                    />
-                    <div style={{ marginTop: 30 }} />
-                  </>
-                )
+              lists.map((list,index) => {
+                if(index % 4 === 0){
+                  return(
+                    <>
+                      <Card 
+                        contents={list.contents} 
+                        create={list.created_at} 
+                        title={list.title} 
+                        img={list.img}
+                      />
+                      <div style={{ marginTop: 30 }} />
+                    </>
+                  )
+                }
+                else{
+                  return(
+                    <>
+                      <Link style={{ textDecoration: 'none', color: 'black'}} to={`/${list.id}`}>
+                        <Card
+                          ad 
+                          categoryId={onCardCategory(list.category_id)} 
+                          contents={list.contents} 
+                          create={list.created_at} 
+                          title={list.title} 
+                          userId={list.user_id}
+                        />
+                      </Link>
+                      <div style={{ marginTop: 30 }} />
+                    </>
+                  )
+                }
               })
             }
           </div>

@@ -1,0 +1,39 @@
+@import '../../css/Responsive.scss';
+
+@include mobile{
+  .ReplyContainer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #E1E4E7;
+    border-radius: 10px;
+    padding: 20px 30px;
+  }
+}
+
+@include desktop{
+  .ReplyContainer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #E1E4E7;
+    border-radius: 10px;
+    padding: 20px 30px;
+    width: 100%;
+  }
+}
+
+
+.ReplyTitle {
+  color: #7E848A;
+  font-size: 16px;
+}
+
+.ReplyContent {
+  color: #495057;
+  font-size: 16px;
+}
+
+.ReplyDate {
+  margin-top: 15px;
+  color: #ADB5BD;
+  font-size: 13px;
+}

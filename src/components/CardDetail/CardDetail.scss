@@ -1,0 +1,43 @@
+@import '../../css/Responsive.scss';
+
+@include mobile {
+  .DetailContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #00C854;
+    border-radius: 10px;
+    padding: 20px 30px;
+  }
+}
+
+@include desktop {
+  .DetailContainer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #00C854;
+    border-radius: 10px;
+    padding: 20px 30px;
+    width: 100%;
+  }
+}
+
+
+.DetailTitle {
+  color: #282C30;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.DetailContent {
+  margin-top: 6px;
+  font-size: 16px;
+  color: #495057;
+  width: 100%;
+}
+
+.DetailDate {
+  font-size: 13px; 
+  color: #7E848A;
+}
